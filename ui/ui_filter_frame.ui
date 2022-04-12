@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>filter_frame</class>
+ <widget class="QFrame" name="filter_frame">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>681</width>
+    <height>369</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Frame</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="type_box">
+     <property name="title">
+      <string>类型</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="3">
+       <widget class="QCheckBox" name="type_drama">
+        <property name="text">
+         <string>电视剧</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="type_all">
+        <property name="text">
+         <string>全部</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QCheckBox" name="type_movie">
+        <property name="text">
+         <string>电影</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="type_anime">
+        <property name="text">
+         <string>动漫</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="4">
+       <widget class="QCheckBox" name="type_record">
+        <property name="text">
+         <string>纪录片</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QCheckBox" name="type_other">
+        <property name="text">
+         <string>其他</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="tag_box">
+     <property name="title">
+      <string>标签</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="4" column="6">
+       <widget class="QCheckBox" name="tag_suspence">
+        <property name="text">
+         <string>悬疑</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="8">
+       <widget class="QCheckBox" name="tag_music">
+        <property name="text">
+         <string>音乐</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="3">
+       <widget class="QCheckBox" name="tag_adventrue">
+        <property name="text">
+         <string>冒险</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="tag_swordsmen">
+        <property name="text">
+         <string>武侠</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="9">
+       <widget class="QCheckBox" name="tag_chorus">
+        <property name="text">
+         <string>歌舞</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QCheckBox" name="tag_drama">
+        <property name="text">
+         <string>剧情</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="tag_all">
+        <property name="text">
+         <string>全部</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QCheckBox" name="tag_comedy">
+        <property name="text">
+         <string>喜剧</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="10">
+       <widget class="QCheckBox" name="tag_biography">
+        <property name="text">
+         <string>传记</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="11">
+       <widget class="QCheckBox" name="tag_history">
+        <property name="text">
+         <string>历史</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="5">
+       <widget class="QCheckBox" name="tag_love">
+        <property name="text">
+         <string>爱情</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="6">
+       <widget class="QCheckBox" name="tag_science">
+        <property name="text">
+         <string>科幻</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="4">
+       <widget class="QCheckBox" name="tag_fancy">
+        <property name="text">
+         <string>奇幻</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QCheckBox" name="tag_disaster">
+        <property name="text">
+         <string>灾难</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="7">
+       <widget class="QCheckBox" name="tag_homo">
+        <property name="text">
+         <string>同性</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="5">
+       <widget class="QCheckBox" name="tag_west">
+        <property name="text">
+         <string>西部</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QCheckBox" name="tag_action">
+        <property name="text">
+         <string>动作</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="13">
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="12">
+       <widget class="QCheckBox" name="tag_war">
+        <property name="text">
+         <string>战争</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="7">
+       <widget class="QCheckBox" name="tag_horror">
+        <property name="text">
+         <string>恐怖</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="8">
+       <widget class="QCheckBox" name="tag_crime">
+        <property name="text">
+         <string>犯罪</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="9">
+       <widget class="QCheckBox" name="tag_cartoon">
+        <property name="text">
+         <string>动画</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="10">
+       <widget class="QCheckBox" name="tag_thriller">
+        <property name="text">
+         <string>惊悚</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="11">
+       <widget class="QCheckBox" name="tag_sex">
+        <property name="text">
+         <string>情色</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="12">
+       <widget class="QCheckBox" name="tag_other">
+        <property name="text">
+         <string>其他</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="area_box">
+     <property name="title">
+      <string>地区</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="area_all">
+        <property name="text">
+         <string>全部</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="10">
+       <widget class="QCheckBox" name="area_France">
+        <property name="text">
+         <string>法国</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="5">
+       <widget class="QCheckBox" name="area_India">
+        <property name="text">
+         <string>印度</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QCheckBox" name="area_Russia">
+        <property name="text">
+         <string>俄罗斯</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QCheckBox" name="area_America">
+        <property name="text">
+         <string>美国</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="8">
+       <widget class="QCheckBox" name="area_Korea">
+        <property name="text">
+         <string>韩国</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="13">
+       <widget class="QCheckBox" name="area_Italy">
+        <property name="text">
+         <string>意大利</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QCheckBox" name="area_Japan">
+        <property name="text">
+         <string>日本</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="9">
+       <widget class="QCheckBox" name="area_Britain">
+        <property name="text">
+         <string>英国</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="area_Thailand">
+        <property name="text">
+         <string>泰国</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QCheckBox" name="area_China">
+        <property name="text">
+         <string>中国大陆</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="14">
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="6">
+       <widget class="QCheckBox" name="area_Taiwan">
+        <property name="text">
+         <string>台湾</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="6">
+       <widget class="QCheckBox" name="area_Other">
+        <property name="text">
+         <string>其他</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QCheckBox" name="area_Hongkong">
+        <property name="text">
+         <string>香港</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="11">
+       <widget class="QCheckBox" name="area_Spain">
+        <property name="text">
+         <string>西班牙</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QCheckBox" name="area_Germany">
+        <property name="text">
+         <string>德国</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="year_box">
+     <property name="title">
+      <string>年代</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="6">
+       <widget class="QCheckBox" name="year_1970">
+        <property name="text">
+         <string>1970</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QCheckBox" name="year_1960">
+        <property name="text">
+         <string>1960</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="8">
+       <widget class="QCheckBox" name="year_before">
+        <property name="text">
+         <string>更早</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QCheckBox" name="year_1990">
+        <property name="text">
+         <string>1990</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="year_all">
+        <property name="text">
+         <string>全部</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QCheckBox" name="year_2000">
+        <property name="text">
+         <string>2000</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QCheckBox" name="year_2010">
+        <property name="text">
+         <string>2010</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="year_2020">
+        <property name="text">
+         <string>2020</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="9">
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="5">
+       <widget class="QCheckBox" name="year_1980">
+        <property name="text">
+         <string>1980</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="quality_box">
+     <property name="title">
+      <string>清晰度</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="quality_8K">
+        <property name="text">
+         <string>8K</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QCheckBox" name="quality_1080P">
+        <property name="text">
+         <string>1080P</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="quality_all">
+        <property name="text">
+         <string>全部</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QCheckBox" name="quality_4K">
+        <property name="text">
+         <string>4K</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QCheckBox" name="quality_2K">
+        <property name="text">
+         <string>2K</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="13">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="6">
+       <widget class="QCheckBox" name="quality_lower">
+        <property name="text">
+         <string>更低</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QCheckBox" name="quality_720P">
+        <property name="text">
+         <string>720P</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

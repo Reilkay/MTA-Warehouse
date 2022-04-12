@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>604</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="FilterFrame" name="filter_frame">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QToolButton" name="filter_button">
+          <property name="styleSheet">
+           <string notr="true">border-style:flat;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normalon>:/resources/icon/filter.svg</normalon>
+           </iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>25</width>
+            <height>25</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="search_text">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="search_button">
+          <property name="mouseTracking">
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-style:flat;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources.qrc">
+            <normaloff>:/resources/icon/search.svg</normaloff>:/resources/icon/search.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QListView" name="main_view"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>true</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftToolBarArea|Qt::TopToolBarArea</set>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="new_item"/>
+   <addaction name="separator"/>
+   <addaction name="delete_item"/>
+   <addaction name="separator"/>
+   <addaction name="update"/>
+   <addaction name="separator"/>
+   <addaction name="import_file"/>
+   <addaction name="export_file"/>
+   <addaction name="export_excel"/>
+   <addaction name="separator"/>
+   <addaction name="star_list"/>
+   <addaction name="separator"/>
+   <addaction name="setting"/>
+  </widget>
+  <action name="new_item">
+   <property name="icon">
+    <iconset>
+     <normalon>:/resources/icon/new.svg</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>添加</string>
+   </property>
+   <property name="toolTip">
+    <string>添加</string>
+   </property>
+  </action>
+  <action name="delete_item">
+   <property name="icon">
+    <iconset>
+     <normalon>:/resources/icon/delete.svg</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>删除</string>
+   </property>
+   <property name="toolTip">
+    <string>删除</string>
+   </property>
+  </action>
+  <action name="update">
+   <property name="icon">
+    <iconset>
+     <normalon>:/resources/icon/update.svg</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>刷新</string>
+   </property>
+   <property name="toolTip">
+    <string>刷新</string>
+   </property>
+  </action>
+  <action name="import_file">
+   <property name="icon">
+    <iconset>
+     <normalon>:/resources/icon/import.svg</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>导入</string>
+   </property>
+   <property name="toolTip">
+    <string>导入</string>
+   </property>
+  </action>
+  <action name="export_file">
+   <property name="icon">
+    <iconset>
+     <normalon>:/resources/icon/export.svg</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>导出</string>
+   </property>
+   <property name="toolTip">
+    <string>导出</string>
+   </property>
+  </action>
+  <action name="export_excel">
+   <property name="icon">
+    <iconset>
+     <normalon>:/resources/icon/export2excel.svg</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>导出Excel</string>
+   </property>
+   <property name="toolTip">
+    <string>导出Excel</string>
+   </property>
+  </action>
+  <action name="star_list">
+   <property name="icon">
+    <iconset>
+     <normalon>:/resources/icon/star.svg</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>收藏夹</string>
+   </property>
+   <property name="toolTip">
+    <string>收藏夹</string>
+   </property>
+  </action>
+  <action name="setting">
+   <property name="icon">
+    <iconset>
+     <normalon>:/resources/icon/setting.svg</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>设置</string>
+   </property>
+   <property name="toolTip">
+    <string>设置</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FilterFrame</class>
+   <extends>QFrame</extends>
+   <header>frame.filter_frame</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

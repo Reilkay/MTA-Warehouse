@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="/">
+    <file>resources/icon/filter.svg</file>
+    <file>resources/icon/setting.svg</file>
+    <file>resources/icon/delete.svg</file>
+    <file>resources/icon/export.svg</file>
+    <file>resources/icon/export2excel.svg</file>
+    <file>resources/icon/import.svg</file>
+    <file>resources/icon/new.svg</file>
+    <file>resources/icon/search.svg</file>
+    <file>resources/icon/star.svg</file>
+    <file>resources/icon/update.svg</file>
+  </qresource>
+</RCC>
