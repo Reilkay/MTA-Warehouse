@@ -137,6 +137,7 @@ class Ui_MainWindow(object):
         self.toolBar.setMovable(True)
         self.toolBar.setAllowedAreas(Qt.LeftToolBarArea|Qt.TopToolBarArea)
         self.toolBar.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
+        self.toolBar.setFloatable(False)
         MainWindow.addToolBar(Qt.LeftToolBarArea, self.toolBar)
 
         self.toolBar.addAction(self.new_item)
