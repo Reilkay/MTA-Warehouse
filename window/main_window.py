@@ -19,6 +19,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def filter_button_clicked(self):
         if self.filter_frame.isVisible():
-            self.filter_frame.setVisible(False)
+            # self.filter_frame.setVisible(False)
+            self.filter_frame.hide_and_show(False)
         else:
-            self.filter_frame.setVisible(True)
+            # self.filter_frame.setVisible(True)
+            self.filter_frame.hide_and_show(True)
