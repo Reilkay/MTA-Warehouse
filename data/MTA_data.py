@@ -89,3 +89,9 @@ class MTAData:
 
     def __str__(self) -> str:
         return f'name: {self.name}, name_chn: {self.name_chn}, type: {self.type}, tag: {self.tag}, area: {self.area}, year: {self.year}, quality: {self.quality}, path: {self.path}, save_time: {self.save_time}'
+
+    def to_show(self) -> str:
+        if self.name == self.name_chn:
+            return f'{self.name} ({self.year})'
+        else:
+            return f'{self.name} {self.name_chn} ({self.year})'

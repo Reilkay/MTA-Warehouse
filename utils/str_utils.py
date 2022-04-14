@@ -5,11 +5,8 @@ import ast
 class StrUtils:
 
     @staticmethod
-    def MTA_data_to_name(mta: MTAData) -> str:
-        if mta.name == mta.name_chn:
-            return mta.name
-        else:
-            return f'{mta.name}({mta.name_chn})'
+    def MTA_list_to_show_list(mta_list: list[MTAData]) -> list[str]:
+        return [mta.to_show() for mta in mta_list]
 
     @staticmethod
     def str_to_MTA_data(line: str) -> MTAData:
