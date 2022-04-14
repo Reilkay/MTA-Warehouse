@@ -22,7 +22,7 @@ class Ui_info_dialog(object):
     def setupUi(self, info_dialog):
         if not info_dialog.objectName():
             info_dialog.setObjectName(u"info_dialog")
-        info_dialog.resize(222, 269)
+        info_dialog.resize(199, 218)
         self.verticalLayout = QVBoxLayout(info_dialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.label = QLabel(info_dialog)

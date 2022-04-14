@@ -1,4 +1,5 @@
-from PySide6.QtWidgets import QMainWindow, QListWidgetItem
+from PySide6.QtWidgets import QMainWindow
+from PySide6.QtCore import Qt
 from ui.ui_main_window import Ui_MainWindow
 from window.info_dialog import InfoDialog
 from utils.dao import Dao
@@ -32,7 +33,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.filter_button.clicked.connect(self.filter_button_clicked)
 
     def bind_view_item(self):
-        self.main_view.itemClicked.connect(self.a_item_clicked)
+        self.main_view.currentRowChanged.connect(self.mta_item_changed)
 
     # 筛选按钮点击 折叠/展开
     def filter_button_clicked(self):
@@ -41,20 +42,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             self.filter_frame.hide_and_show(True)
 
-    # 项目点击显示详细信息
-    def a_item_clicked(self, item: QListWidgetItem):
-        current = self.main_view.currentIndex().row()
-        info = StrUtils.get_MTA_info(self.mta_data_list[current])
-        if not self.dl:
-            self.dl = InfoDialog(self, info=info)
-            self.dl.show()
-            self.dl.setGeometry(self.x() + self.width(),
-                                self.y() + 40, self.dl.width(),
-                                self.dl.height())
-        else:
-            self.dl.change_info(info)
-            if self.dl.isHidden():
+    def mta_item_changed(self, current: int):
+        if current != -1:
+            info = StrUtils.get_MTA_info(self.mta_data_list[current])
+            if not self.dl:
+                self.dl = InfoDialog(self, info=info)
                 self.dl.show()
                 self.dl.setGeometry(self.x() + self.width(),
                                     self.y() + 40, self.dl.width(),
                                     self.dl.height())
+            else:
+                self.dl.change_info(info)
+                if self.dl.isHidden():
+                    self.dl.show()
+                    self.dl.setGeometry(self.x() + self.width(),
+                                        self.y() + 40, self.dl.width(),
+                                        self.dl.height())

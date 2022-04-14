@@ -1,5 +1,6 @@
 from data.MTA_data import *
 import ast
+import time
 
 
 class StrUtils:
@@ -67,9 +68,21 @@ class StrUtils:
             MTAQuality.HD: '720P',
             MTAQuality.LOWER: '更低'
         }
+        type_show = type_dict.get(mta.type)
         tags = list(map(lambda t: tag_dict.get(t), mta.tag))
         tag_show = '/'.join(tags)
-        return f'片名: {mta.name}\n中文片名: {mta.name_chn}\n类型: {tag_show}标签: \n地区: \n年份: \n清晰度: \n路径: \n保存时间: '
+        area_show = area_dict.get(mta.area)
+        quality_show = quality_dict.get(mta.quality)
+        save_time_show = StrUtils.timestamp_to_localtime(mta.save_time)
+        return f'片名: {mta.name}\n\
+中文片名: {mta.name_chn}\n\
+类型: {type_show}\n\
+标签: {tag_show}\n\
+地区: {area_show}\n\
+年份: {mta.year}\n\
+清晰度: {quality_show}\n\
+路径: {mta.path}\n\
+保存时间: {save_time_show}'
 
     @staticmethod
     def str_to_MTA_data(line: str) -> MTAData:
@@ -80,3 +93,9 @@ class StrUtils:
         args[6] = MTAQuality(int(args[6]))
         args[8] = int(args[8])
         return MTAData(*args)
+
+    @staticmethod
+    def timestamp_to_localtime(stamp: int) -> str:
+        time_local = time.localtime(stamp)
+        #转换成新的时间格式(2016-05-05 20:28:54)
+        return time.strftime("%Y-%m-%d %H:%M:%S", time_local)
