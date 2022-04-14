@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QMainWindow
 from PySide6.QtCore import Qt
 from ui.ui_main_window import Ui_MainWindow
 from window.info_dialog import InfoDialog
+from window.new_item_dialog import NewItemDialog
 from utils.dao import Dao
 from utils.str_utils import StrUtils
 
@@ -14,6 +15,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.init_ui()
         self.bind_button()
         self.bind_view_item()
+        self.bind_action()
 
     # 初始化页面
     def init_ui(self):
@@ -32,8 +34,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # 筛选按钮
         self.filter_button.clicked.connect(self.filter_button_clicked)
 
+    # ListWidgetItem绑定
     def bind_view_item(self):
         self.main_view.currentRowChanged.connect(self.mta_item_changed)
+
+    # 动作绑定
+    def bind_action(self):
+        self.new_item.triggered.connect(self.new_item_triggered)
 
     # 筛选按钮点击 折叠/展开
     def filter_button_clicked(self):
@@ -42,6 +49,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             self.filter_frame.hide_and_show(True)
 
+    # mta项目点击/切换时打开详情弹窗
     def mta_item_changed(self, current: int):
         if current != -1:
             info = StrUtils.get_MTA_info(self.mta_data_list[current])
@@ -58,3 +66,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.dl.setGeometry(self.x() + self.width(),
                                         self.y() + 40, self.dl.width(),
                                         self.dl.height())
+
+    # 点击添加按钮
+    def new_item_triggered(self):
+        dl = NewItemDialog(self)
+        print(dl.exec())
