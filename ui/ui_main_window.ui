@@ -111,7 +111,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QListView" name="main_view"/>
+       <widget class="QListWidget" name="main_view"/>
       </item>
      </layout>
     </item>

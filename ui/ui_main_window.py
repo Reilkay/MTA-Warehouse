@@ -17,8 +17,9 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLineEdit,
-    QListView, QMainWindow, QSizePolicy, QSpacerItem,
-    QToolBar, QToolButton, QVBoxLayout, QWidget)
+    QListWidget, QListWidgetItem, QMainWindow, QSizePolicy,
+    QSpacerItem, QToolBar, QToolButton, QVBoxLayout,
+    QWidget)
 
 from frame.filter_frame import FilterFrame
 import resources_rc
@@ -123,7 +124,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addLayout(self.horizontalLayout)
 
-        self.main_view = QListView(self.centralwidget)
+        self.main_view = QListWidget(self.centralwidget)
         self.main_view.setObjectName(u"main_view")
 
         self.verticalLayout_3.addWidget(self.main_view)
