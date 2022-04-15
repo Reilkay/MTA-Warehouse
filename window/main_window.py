@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QMainWindow
 from PySide6.QtCore import Qt
+from data.MTA_data import MTAData
 from ui.ui_main_window import Ui_MainWindow
 from window.info_dialog import InfoDialog
 from window.new_item_dialog import NewItemDialog
@@ -25,6 +26,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.dl: InfoDialog = None
         # 获取数据
         self.mta_data_list = Dao().get_MTA_list()
+        # 刷新列表显示，将数据填入
+        self.update_main_list()
+
+    # 刷新列表显示
+    def update_main_list(self):
+        # 将ListWidget清空
+        self.main_view.clear()
         # 将数据填入ListWidget
         self.main_view.addItems(
             StrUtils.MTA_list_to_show_list(self.mta_data_list))
@@ -70,6 +78,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     # 点击添加按钮
     def new_item_triggered(self):
         dl = NewItemDialog(self)
+        # 信号绑定
+        dl.add_new_item.connect(self.append_new_item)
         resu = 0
         while True:
             resu = dl.exec()
@@ -83,5 +93,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 break
         if resu == 1:
             print("add")
+            # 刷新列表显示
+            self.update_main_list()
         else:
             print("no-add")
+
+    # 将收到的mta数据添加进列表中，并永久化存储
+    def append_new_item(self, mta: MTAData):
+        print("get mta data!")
+        self.mta_data_list.append(mta)
+        Dao().add_MTA_item(mta)

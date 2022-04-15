@@ -1,12 +1,16 @@
-from PySide6.QtWidgets import QDialog, QDialogButtonBox, QFileDialog
-from PySide6.QtGui import QDragEnterEvent, QDropEvent, QKeyEvent
-from PySide6.QtCore import Qt, QItemSelectionModel
+from typing import Tuple
+from PySide6.QtWidgets import QDialog, QDialogButtonBox, QFileDialog, QCheckBox, QMessageBox
+from PySide6.QtGui import QDragEnterEvent, QDropEvent, QKeyEvent, QIntValidator
+from PySide6.QtCore import Qt, QItemSelectionModel, Signal
 from ui.ui_new_item_dialog import Ui_new_item_dialog
 from utils.file_operation import FileOperation
 from utils.str_utils import StrUtils
+from data.MTA_data import MTAData
 
 
 class NewItemDialog(QDialog, Ui_new_item_dialog):
+
+    add_new_item = Signal(MTAData)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -22,6 +26,10 @@ class NewItemDialog(QDialog, Ui_new_item_dialog):
         self.buttonBox.button(QDialogButtonBox.Cancel).setText('取消')
         # 设置置顶按钮开关状态
         self.window_top_button.setCheckable(True)
+        # 设置年份输入框仅限数字
+        year_validator = QIntValidator()
+        year_validator.setRange(1, 3000)
+        self.year_input.setValidator(year_validator)
         # 下拉选择文本列表
         type_list = ['动漫', '电影', '电视剧', '纪录片', '其他']
         area_list = [
@@ -83,12 +91,67 @@ class NewItemDialog(QDialog, Ui_new_item_dialog):
                 # 重新加载显示
                 self.update_file_list()
 
+    # 获取tag点击状态
+    def get_selected_tags(self) -> list[str]:
+        status_list = []
+        for tag_check in self.tag_box.children():
+            if isinstance(tag_check, QCheckBox):
+                status_list.append(
+                    (tag_check.objectName(), tag_check.isChecked()))
+        return status_list
+
+    # 验证数据是否合法，若合法则返回数据
+    def get_if_input_legal(self) -> Tuple[str, str, str, bool, str]:
+        tag_check = [t for t in self.get_selected_tags() if t[1]]
+        if self.name_input.text() and self.year_input.text() and tag_check:
+            name = self.name_input.text()
+            name_chn = self.name_chn_input.text() if self.name_chn_input.text(
+            ) else self.name_input.text()
+            year = self.year_input.text()
+            # 限制年份必须为3000以内，并在当前年份之前
+            if int(year) > 3000 and StrUtils.timef_to_timestamp(
+                    year) > StrUtils.get_current_timestamp():
+                return (None, None, None, False, '年份填写有误，请核对！')
+            if len(tag_check) > 5:
+                return (None, None, None, False, '过多的标签，请核对！')
+            return (name, name_chn, year, True, None)
+        else:
+            return (None, None, None, False, '有未填写的信息，无法添加！')
+
+    # 确认添加
     def accept(self) -> None:
+        name, name_chn, year, legal, error_msg = self.get_if_input_legal()
+        if not legal:
+            msg_box = QMessageBox()
+            msg_box.setWindowTitle('警告')
+            msg_box.setText(error_msg)
+            msg_box.setIcon(QMessageBox.Warning)
+            # 按钮文本设置
+            msg_box.addButton('返回填写', QMessageBox.YesRole)
+            msg_box.exec()
+            return
+        type = self.type_input.currentIndex() + 1
+        area = self.area_input.currentIndex() + 1
+        quality = self.quality_input.currentIndex() + 1
+
+        # TODO: 将所选文件移动到仓库内，并将路径传入MTA
+        # move_files_to_warehouse()
+        path = 'wait to add'
+
+        save_time = StrUtils.get_current_timestamp()
+        mta = StrUtils.info_to_MTA_data(name, name_chn, type,
+                                        self.get_selected_tags(), area, year,
+                                        quality, path, save_time)
+        print(mta)
+        self.add_new_item.emit(mta)
+        # 关闭前恢复显示主窗口
         if self.window_top_button.isChecked():
             self.parent().show()
         return super().accept()
 
+    # 取消
     def reject(self) -> None:
+        # 关闭前恢复显示主窗口
         if self.window_top_button.isChecked():
             self.parent().show()
         return super().reject()

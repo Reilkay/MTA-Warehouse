@@ -1,3 +1,4 @@
+from typing import Tuple
 from data.MTA_data import *
 import ast
 import time
@@ -89,7 +90,37 @@ class StrUtils:
 路径: {mta.path}\n\
 保存时间: {save_time_show}'
 
-    # 从文本中提取MTA元素
+    # 将文本标签转为索引
+    @staticmethod
+    def str_tag_to_index(tag: str) -> int:
+        tag_dict = {
+            'tag_drama': 1,
+            'tag_comedy': 2,
+            'tag_action': 3,
+            'tag_love': 4,
+            'tag_science': 5,
+            'tag_homo': 6,
+            'tag_music': 7,
+            'tag_chorus': 8,
+            'tag_biography': 9,
+            'tag_history': 10,
+            'tag_war': 11,
+            'tag_swordsmen': 12,
+            'tag_disaster': 13,
+            'tag_adventrue': 14,
+            'tag_fancy': 15,
+            'tag_west': 16,
+            'tag_suspence': 17,
+            'tag_horror': 18,
+            'tag_crime': 19,
+            'tag_cartoon': 20,
+            'tag_thriller': 21,
+            'tag_sex': 22,
+            'tag_other': 23
+        }
+        return tag_dict.get(tag)
+
+    # 从单行文本中提取MTA元素
     @staticmethod
     def str_to_MTA_data(line: str) -> MTAData:
         args = line.split(chr(30))
@@ -99,6 +130,34 @@ class StrUtils:
         args[6] = MTAQuality(int(args[6]))
         args[8] = int(args[8])
         return MTAData(*args)
+
+    # 从用户输入中提取MTA元素
+    @staticmethod
+    def info_to_MTA_data(name: str, name_chn: str, type: int,
+                         tag_input: list[Tuple[str,
+                                               bool]], area: int, year: str,
+                         quality: int, path: str, save_time: int) -> MTAData:
+        type = MTAType(type)
+        tag_index = [
+            StrUtils.str_tag_to_index(t[0]) for t in tag_input if t[1]
+        ]
+        tag_index.sort()
+        tag = list(map(lambda i: MTATag(i), tag_index))
+        area = MTAArea(area)
+        quality = MTAQuality(quality)
+        return MTAData(name, name_chn, type, tag, area, year, quality, path,
+                       save_time)
+
+    # 获取当前时间戳
+    @staticmethod
+    def get_current_timestamp() -> int:
+        return int(time.time())
+
+    # 格式化时间转时间戳
+    @staticmethod
+    def timef_to_timestamp(str_time) -> int:
+        timeArray = time.strptime(str_time, "%Y")
+        return int(time.mktime(timeArray))
 
     # 将时间戳转换为当地时间
     @staticmethod
