@@ -1,14 +1,19 @@
 from data.MTA_data import *
 import ast
 import time
+import os
+import re
+import functools
 
 
 class StrUtils:
 
+    # 将MTA列表转换为展示列表
     @staticmethod
     def MTA_list_to_show_list(mta_list: list[MTAData]) -> list[str]:
         return [mta.to_show() for mta in mta_list]
 
+    # 将MTA对象翻译为中文Info
     @staticmethod
     def get_MTA_info(mta: MTAData) -> str:
         type_dict = {
@@ -84,6 +89,7 @@ class StrUtils:
 路径: {mta.path}\n\
 保存时间: {save_time_show}'
 
+    # 从文本中提取MTA元素
     @staticmethod
     def str_to_MTA_data(line: str) -> MTAData:
         args = line.split(chr(30))
@@ -94,8 +100,53 @@ class StrUtils:
         args[8] = int(args[8])
         return MTAData(*args)
 
+    # 将时间戳转换为当地时间
     @staticmethod
     def timestamp_to_localtime(stamp: int) -> str:
         time_local = time.localtime(stamp)
         #转换成新的时间格式(2016-05-05 20:28:54)
         return time.strftime("%Y-%m-%d %H:%M:%S", time_local)
+
+    # 文件名排序对比函数
+    @staticmethod
+    def file_name_cmp(file1: str, file2: str):
+        # 去除文件路径和文件后缀
+        _, file1 = os.path.split(file1)
+        _, file2 = os.path.split(file2)
+        file1, _ = os.path.splitext(file1)
+        file2, _ = os.path.splitext(file2)
+
+        if file1 == file2:
+            return 0
+        # 试图寻找file1中的分集信息
+        file1_nums = re.findall(r'Ep([0-9]+)', file1, re.IGNORECASE)
+        if not file1_nums:
+            file1_nums = re.findall(r'E([0-9]+)', file1, re.IGNORECASE)
+            if not file1_nums:
+                file1_nums = re.findall(r'([0-9]+)', file1)
+        # 试图寻找file2中的分集信息
+        file2_nums = re.findall(r'Ep([0-9]+)', file2, re.IGNORECASE)
+        if not file2_nums:
+            file2_nums = re.findall(r'E([0-9]+)', file2, re.IGNORECASE)
+            if not file2_nums:
+                file2_nums = re.findall(r'([0-9]+)', file2)
+        # 若文件名中有数字（可能为分集信息的值）
+        if file1_nums and file2_nums:
+            if file1_nums[-1] < file2_nums[-1]:
+                return -1
+            elif file1_nums[-1] > file2_nums[-1]:
+                return 1
+            else:
+                return 0
+        # 否则按文件名排序
+        else:
+            if file1 < file2:
+                return -1
+            else:
+                return 1
+
+    # 文件排序函数
+    @staticmethod
+    def file_name_sorted(file_list: list[str]) -> list[str]:
+        return sorted(file_list,
+                      key=functools.cmp_to_key(StrUtils.file_name_cmp))

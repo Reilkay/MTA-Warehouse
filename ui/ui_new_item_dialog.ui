@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>573</width>
+    <width>572</width>
     <height>386</height>
    </rect>
   </property>
@@ -512,7 +512,7 @@
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>225</width>
+         <width>218</width>
          <height>20</height>
         </size>
        </property>
@@ -528,7 +528,7 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>200</width>
+         <width>100</width>
          <height>0</height>
         </size>
        </property>
@@ -540,6 +540,19 @@
        </property>
        <property name="text">
         <string>添加文件</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="add_directory_button">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>添加目录</string>
        </property>
       </widget>
      </item>
@@ -588,8 +601,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>257</x>
+     <y>376</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -604,8 +617,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>325</x>
+     <y>376</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>

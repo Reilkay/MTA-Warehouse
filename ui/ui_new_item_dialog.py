@@ -26,7 +26,7 @@ class Ui_new_item_dialog(object):
     def setupUi(self, new_item_dialog):
         if not new_item_dialog.objectName():
             new_item_dialog.setObjectName(u"new_item_dialog")
-        new_item_dialog.resize(573, 386)
+        new_item_dialog.resize(572, 386)
         self.verticalLayout_3 = QVBoxLayout(new_item_dialog)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.horizontalLayout = QHBoxLayout()
@@ -315,7 +315,7 @@ class Ui_new_item_dialog(object):
 
         self.horizontalLayout_2.addWidget(self.window_top_button)
 
-        self.horizontalSpacer = QSpacerItem(225, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+        self.horizontalSpacer = QSpacerItem(218, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
@@ -323,10 +323,16 @@ class Ui_new_item_dialog(object):
         self.add_file_button.setObjectName(u"add_file_button")
         sizePolicy.setHeightForWidth(self.add_file_button.sizePolicy().hasHeightForWidth())
         self.add_file_button.setSizePolicy(sizePolicy)
-        self.add_file_button.setMinimumSize(QSize(200, 0))
+        self.add_file_button.setMinimumSize(QSize(100, 0))
         self.add_file_button.setMaximumSize(QSize(200, 16777215))
 
         self.horizontalLayout_2.addWidget(self.add_file_button)
+
+        self.add_directory_button = QPushButton(new_item_dialog)
+        self.add_directory_button.setObjectName(u"add_directory_button")
+        self.add_directory_button.setMinimumSize(QSize(100, 0))
+
+        self.horizontalLayout_2.addWidget(self.add_directory_button)
 
         self.horizontalSpacer_2 = QSpacerItem(0, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -393,5 +399,6 @@ class Ui_new_item_dialog(object):
         self.move_down_button.setText(QCoreApplication.translate("new_item_dialog", u"\u4e0b\u79fb", None))
         self.window_top_button.setText(QCoreApplication.translate("new_item_dialog", u"\u7a97\u53e3\u7f6e\u9876", None))
         self.add_file_button.setText(QCoreApplication.translate("new_item_dialog", u"\u6dfb\u52a0\u6587\u4ef6", None))
+        self.add_directory_button.setText(QCoreApplication.translate("new_item_dialog", u"\u6dfb\u52a0\u76ee\u5f55", None))
     # retranslateUi
 
