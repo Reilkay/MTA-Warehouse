@@ -70,4 +70,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     # 点击添加按钮
     def new_item_triggered(self):
         dl = NewItemDialog(self)
-        print(dl.exec())
+        resu = 0
+        while True:
+            resu = dl.exec()
+            if resu == 5:
+                dl.setWindowFlag(Qt.WindowStaysOnTopHint, True)
+                self.hide()
+            elif resu == 6:
+                dl.setWindowFlag(Qt.WindowStaysOnTopHint, False)
+                self.show()
+            else:
+                break
+        if resu == 1:
+            print("add")
+        else:
+            print("no-add")

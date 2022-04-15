@@ -19,13 +19,14 @@ from PySide6.QtWidgets import (QAbstractButton, QAbstractItemView, QApplication,
     QComboBox, QDialog, QDialogButtonBox, QGridLayout,
     QGroupBox, QHBoxLayout, QLabel, QLineEdit,
     QListWidget, QListWidgetItem, QPushButton, QSizePolicy,
-    QSpacerItem, QVBoxLayout, QWidget)
+    QSpacerItem, QToolButton, QVBoxLayout, QWidget)
+import resources_rc
 
 class Ui_new_item_dialog(object):
     def setupUi(self, new_item_dialog):
         if not new_item_dialog.objectName():
             new_item_dialog.setObjectName(u"new_item_dialog")
-        new_item_dialog.resize(677, 408)
+        new_item_dialog.resize(573, 386)
         self.verticalLayout_3 = QVBoxLayout(new_item_dialog)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.horizontalLayout = QHBoxLayout()
@@ -279,10 +280,60 @@ class Ui_new_item_dialog(object):
 
         self.verticalLayout_3.addLayout(self.horizontalLayout)
 
-        self.pushButton = QPushButton(new_item_dialog)
-        self.pushButton.setObjectName(u"pushButton")
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.move_top_button = QToolButton(new_item_dialog)
+        self.move_top_button.setObjectName(u"move_top_button")
+        icon = QIcon()
+        icon.addFile(u":/resources/icon/move_top.svg", QSize(), QIcon.Normal, QIcon.On)
+        self.move_top_button.setIcon(icon)
 
-        self.verticalLayout_3.addWidget(self.pushButton)
+        self.horizontalLayout_2.addWidget(self.move_top_button)
+
+        self.move_up_button = QToolButton(new_item_dialog)
+        self.move_up_button.setObjectName(u"move_up_button")
+        icon1 = QIcon()
+        icon1.addFile(u":/resources/icon/move_up.svg", QSize(), QIcon.Normal, QIcon.On)
+        self.move_up_button.setIcon(icon1)
+
+        self.horizontalLayout_2.addWidget(self.move_up_button)
+
+        self.move_down_button = QToolButton(new_item_dialog)
+        self.move_down_button.setObjectName(u"move_down_button")
+        icon2 = QIcon()
+        icon2.addFile(u":/resources/icon/move_down.svg", QSize(), QIcon.Normal, QIcon.On)
+        self.move_down_button.setIcon(icon2)
+
+        self.horizontalLayout_2.addWidget(self.move_down_button)
+
+        self.window_top_button = QToolButton(new_item_dialog)
+        self.window_top_button.setObjectName(u"window_top_button")
+        icon3 = QIcon()
+        icon3.addFile(u":/resources/icon/window_top.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon3.addFile(u":/resources/icon/window_top_active.svg", QSize(), QIcon.Normal, QIcon.On)
+        self.window_top_button.setIcon(icon3)
+
+        self.horizontalLayout_2.addWidget(self.window_top_button)
+
+        self.horizontalSpacer = QSpacerItem(225, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer)
+
+        self.add_file_button = QPushButton(new_item_dialog)
+        self.add_file_button.setObjectName(u"add_file_button")
+        sizePolicy.setHeightForWidth(self.add_file_button.sizePolicy().hasHeightForWidth())
+        self.add_file_button.setSizePolicy(sizePolicy)
+        self.add_file_button.setMinimumSize(QSize(200, 0))
+        self.add_file_button.setMaximumSize(QSize(200, 16777215))
+
+        self.horizontalLayout_2.addWidget(self.add_file_button)
+
+        self.horizontalSpacer_2 = QSpacerItem(0, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
+
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout_2)
 
         self.file_view = QListWidget(new_item_dialog)
         self.file_view.setObjectName(u"file_view")
@@ -337,6 +388,10 @@ class Ui_new_item_dialog(object):
         self.tag_thriller.setText(QCoreApplication.translate("new_item_dialog", u"\u60ca\u609a", None))
         self.tag_sex.setText(QCoreApplication.translate("new_item_dialog", u"\u60c5\u8272", None))
         self.tag_other.setText(QCoreApplication.translate("new_item_dialog", u"\u5176\u4ed6", None))
-        self.pushButton.setText(QCoreApplication.translate("new_item_dialog", u"\u6dfb\u52a0\u6587\u4ef6", None))
+        self.move_top_button.setText(QCoreApplication.translate("new_item_dialog", u"\u7f6e\u9876", None))
+        self.move_up_button.setText(QCoreApplication.translate("new_item_dialog", u"\u4e0a\u79fb", None))
+        self.move_down_button.setText(QCoreApplication.translate("new_item_dialog", u"\u4e0b\u79fb", None))
+        self.window_top_button.setText(QCoreApplication.translate("new_item_dialog", u"\u7a97\u53e3\u7f6e\u9876", None))
+        self.add_file_button.setText(QCoreApplication.translate("new_item_dialog", u"\u6dfb\u52a0\u6587\u4ef6", None))
     # retranslateUi
 

@@ -10,6 +10,7 @@ class NewItemDialog(QDialog, Ui_new_item_dialog):
         super().__init__(parent)
         self.setupUi(self)
         self.init_ui()
+        self.bind_button()
 
     # 初始化UI
     def init_ui(self):
@@ -17,6 +18,9 @@ class NewItemDialog(QDialog, Ui_new_item_dialog):
         # 按钮文本设置
         self.buttonBox.button(QDialogButtonBox.Ok).setText('确认添加')
         self.buttonBox.button(QDialogButtonBox.Cancel).setText('取消')
+        # 设置置顶按钮开关状态
+        self.window_top_button.setCheckable(True)
+        # 下拉选择文本列表
         type_list = ['动漫', '电影', '电视剧', '纪录片', '其他']
         area_list = [
             '中国大陆', '美国', '香港', '台湾', '日本', '韩国', '英国', '法国', '西班牙', '意大利',
@@ -33,6 +37,9 @@ class NewItemDialog(QDialog, Ui_new_item_dialog):
         self.file_list = []
         # 文件列表添加到view
         self.file_view.addItems(self.file_list)
+
+    def bind_button(self):
+        self.window_top_button.clicked.connect(self.window_top_clicked)
 
     def dragEnterEvent(self, event: QDragEnterEvent) -> None:
         event.acceptProposedAction()
@@ -65,7 +72,21 @@ class NewItemDialog(QDialog, Ui_new_item_dialog):
                 self.file_view.addItems(self.file_list)
 
     def accept(self) -> None:
+        if self.window_top_button.isChecked():
+            self.parent().show()
         return super().accept()
 
     def reject(self) -> None:
+        if self.window_top_button.isChecked():
+            self.parent().show()
         return super().reject()
+
+    def window_top_clicked(self):
+        if self.window_top_button.isChecked():
+            # 设置窗口位置，阻止其回到默认位置
+            self.setGeometry(self.geometry())
+            # 窗口置顶
+            self.done(5)
+        else:
+            #取消置顶
+            self.done(6)
