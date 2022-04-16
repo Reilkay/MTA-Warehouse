@@ -20,6 +20,9 @@ class Dao:
             path, _ = os.path.split(self.__path_name)
             if not os.path.exists(path):
                 os.makedirs(path)
+            if not os.path.isfile(self.__path_name):
+                f = open(self.__path_name, "a")
+                f.close()
 
     def get_MTA_list(self) -> list[MTAData]:
         mlist = []

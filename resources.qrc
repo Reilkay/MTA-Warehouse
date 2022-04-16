@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/">
+    <file>resources/icon/warehouse.svg</file>
     <file>resources/icon/window_top.svg</file>
     <file>resources/icon/window_top_active.svg</file>
     <file>resources/icon/move_down.svg</file>

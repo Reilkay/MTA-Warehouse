@@ -4,6 +4,7 @@ from data.MTA_data import MTAData
 from ui.ui_main_window import Ui_MainWindow
 from window.info_dialog import InfoDialog
 from window.new_item_dialog import NewItemDialog
+from window.setting_dialog import SettingDialog
 from utils.dao import Dao
 from utils.str_utils import StrUtils
 
@@ -49,6 +50,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     # 动作绑定
     def bind_action(self):
         self.new_item.triggered.connect(self.new_item_triggered)
+        self.setting.triggered.connect(self.setting_triggered)
 
     # 筛选按钮点击 折叠/展开
     def filter_button_clicked(self):
@@ -97,6 +99,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.update_main_list()
         else:
             print("no-add")
+
+    # 点击设置按钮
+    def setting_triggered(self):
+        dl = SettingDialog(self)
+        print(dl.exec())
 
     # 将收到的mta数据添加进列表中，并永久化存储
     def append_new_item(self, mta: MTAData):
