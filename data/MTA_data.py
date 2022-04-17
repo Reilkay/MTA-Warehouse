@@ -66,7 +66,8 @@ class MTAData:
 
     def __init__(self, name: str, name_chn: str, type: MTAType,
                  tag: list[MTATag], area: MTAArea, year: str,
-                 quality: MTAQuality, path: str, save_time: int):
+                 quality: MTAQuality, path: str, save_time: int,
+                 other_msg: str):
         self.name = name
         self.name_chn = name_chn
         self.type = type
@@ -76,19 +77,20 @@ class MTAData:
         self.quality = quality
         self.path = path
         self.save_time = save_time
+        self.other_msg = other_msg
 
     def to_str(self):
         tag_value = list(map(lambda e: e.value, self.tag))
         args = [
             self.name, self.name_chn, self.type.value, tag_value,
             self.area.value, self.year, self.quality.value, self.path,
-            self.save_time
+            self.save_time, self.other_msg
         ]
         split = chr(30)
         return split.join(map(str, args))
 
     def __str__(self) -> str:
-        return f'name: {self.name}, name_chn: {self.name_chn}, type: {self.type}, tag: {self.tag}, area: {self.area}, year: {self.year}, quality: {self.quality}, path: {self.path}, save_time: {self.save_time}'
+        return f'name: {self.name}, name_chn: {self.name_chn}, type: {self.type}, tag: {self.tag}, area: {self.area}, year: {self.year}, quality: {self.quality}, path: {self.path}, save_time: {self.save_time}, other_msg: {self.other_msg}'
 
     def to_show(self) -> str:
         if self.name == self.name_chn:

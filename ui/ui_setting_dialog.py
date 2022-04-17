@@ -18,7 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QAbstractButton, QApplication, QComboBox, QDialog,
     QDialogButtonBox, QFrame, QGridLayout, QHBoxLayout,
     QLabel, QLineEdit, QSizePolicy, QSpacerItem,
-    QTabWidget, QVBoxLayout, QWidget)
+    QSpinBox, QTabWidget, QVBoxLayout, QWidget)
 import resources_rc
 
 class Ui_setting_dialog(object):
@@ -36,20 +36,16 @@ class Ui_setting_dialog(object):
         self.tabWidget.setDocumentMode(False)
         self.tabWidget.setTabsClosable(False)
         self.tabWidget.setMovable(True)
-        self.tab = QWidget()
-        self.tab.setObjectName(u"tab")
-        self.gridLayout_3 = QGridLayout(self.tab)
+        self.warehouse_tab = QWidget()
+        self.warehouse_tab.setObjectName(u"warehouse_tab")
+        self.gridLayout_3 = QGridLayout(self.warehouse_tab)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.frame = QFrame(self.tab)
+        self.frame = QFrame(self.warehouse_tab)
         self.frame.setObjectName(u"frame")
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.gridLayout_2 = QGridLayout(self.frame)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer, 2, 0, 1, 1)
-
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.verticalLayout = QVBoxLayout()
@@ -90,6 +86,11 @@ class Ui_setting_dialog(object):
         self.label_5.setObjectName(u"label_5")
 
         self.verticalLayout.addWidget(self.label_5)
+
+        self.label_11 = QLabel(self.frame)
+        self.label_11.setObjectName(u"label_11")
+
+        self.verticalLayout.addWidget(self.label_11)
 
 
         self.horizontalLayout.addLayout(self.verticalLayout)
@@ -137,6 +138,15 @@ class Ui_setting_dialog(object):
 
         self.verticalLayout_2.addWidget(self.auto_rename_rule)
 
+        self.max_tags = QSpinBox(self.frame)
+        self.max_tags.setObjectName(u"max_tags")
+        sizePolicy1.setHeightForWidth(self.max_tags.sizePolicy().hasHeightForWidth())
+        self.max_tags.setSizePolicy(sizePolicy1)
+        self.max_tags.setMinimumSize(QSize(100, 0))
+        self.max_tags.setMaximumSize(QSize(100, 16777215))
+
+        self.verticalLayout_2.addWidget(self.max_tags)
+
 
         self.horizontalLayout.addLayout(self.verticalLayout_2)
 
@@ -167,6 +177,11 @@ class Ui_setting_dialog(object):
 
         self.verticalLayout_3.addWidget(self.label_7)
 
+        self.label_12 = QLabel(self.frame)
+        self.label_12.setObjectName(u"label_12")
+
+        self.verticalLayout_3.addWidget(self.label_12)
+
 
         self.horizontalLayout.addLayout(self.verticalLayout_3)
 
@@ -177,12 +192,16 @@ class Ui_setting_dialog(object):
 
         self.gridLayout_2.addLayout(self.horizontalLayout, 1, 0, 1, 1)
 
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer, 4, 0, 1, 1)
+
 
         self.gridLayout_3.addWidget(self.frame, 0, 0, 1, 1)
 
         icon = QIcon()
         icon.addFile(u":/resources/icon/warehouse.svg", QSize(), QIcon.Normal, QIcon.On)
-        self.tabWidget.addTab(self.tab, icon, "")
+        self.tabWidget.addTab(self.warehouse_tab, icon, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
         self.tabWidget.addTab(self.tab_2, "")
@@ -213,12 +232,14 @@ class Ui_setting_dialog(object):
         self.label_2.setText(QCoreApplication.translate("setting_dialog", u"\u76ee\u5f55\u547d\u540d\u89c4\u5219", None))
         self.label_4.setText(QCoreApplication.translate("setting_dialog", u"\u6587\u4ef6\u91cd\u547d\u540d", None))
         self.label_5.setText(QCoreApplication.translate("setting_dialog", u"\u6587\u4ef6\u547d\u540d\u89c4\u5219", None))
+        self.label_11.setText(QCoreApplication.translate("setting_dialog", u"\u6700\u5927\u6807\u7b7e\u6570\u91cf", None))
         self.label_6.setText(QCoreApplication.translate("setting_dialog", u"\u5f53\u4fdd\u5b58\u4f4d\u7f6e\u4e3acustom\u65f6\uff0c\u9700\u8981\u586b\u5199\u4fdd\u5b58\u8def\u5f84", None))
         self.label_9.setText(QCoreApplication.translate("setting_dialog", u"\u4fdd\u5b58\u8def\u5f84\u65e0\u6548\u65f6\u81ea\u52a8\u4f7f\u7528\u9ed8\u8ba4\u8def\u5f84", None))
         self.label_8.setText(QCoreApplication.translate("setting_dialog", u"TextLabel", None))
         self.label_10.setText(QCoreApplication.translate("setting_dialog", u"\u662f\u5426\u81ea\u52a8\u5c06\u6dfb\u52a0\u7684\u5267\u96c6\u91cd\u547d\u540d\u4e3a\u6807\u51c6\u683c\u5f0f", None))
         self.label_7.setText(QCoreApplication.translate("setting_dialog", u"TextLabel", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("setting_dialog", u"\u4ed3\u5e93\u8bbe\u7f6e", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("setting_dialog", u"\u663e\u793a\u8bbe\u7f6e", None))
+        self.label_12.setText(QCoreApplication.translate("setting_dialog", u"\u4e0d\u5efa\u8bae\u8bbe\u7f6e\u8d85\u8fc75\u7684\u503c\uff0c\u53ef\u80fd\u5bfc\u81f4\u663e\u793a\u56f0\u96be", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.warehouse_tab), QCoreApplication.translate("setting_dialog", u"\u4ed3\u5e93\u8bbe\u7f6e", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("setting_dialog", u"\u7a0b\u5e8f\u8bbe\u7f6e", None))
     # retranslateUi
 

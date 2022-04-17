@@ -26,7 +26,7 @@ class Ui_new_item_dialog(object):
     def setupUi(self, new_item_dialog):
         if not new_item_dialog.objectName():
             new_item_dialog.setObjectName(u"new_item_dialog")
-        new_item_dialog.resize(572, 386)
+        new_item_dialog.resize(572, 412)
         self.verticalLayout_3 = QVBoxLayout(new_item_dialog)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.horizontalLayout = QHBoxLayout()
@@ -43,11 +43,6 @@ class Ui_new_item_dialog(object):
 
         self.verticalLayout.addWidget(self.label_2)
 
-        self.label_4 = QLabel(new_item_dialog)
-        self.label_4.setObjectName(u"label_4")
-
-        self.verticalLayout.addWidget(self.label_4)
-
         self.label_3 = QLabel(new_item_dialog)
         self.label_3.setObjectName(u"label_3")
 
@@ -58,10 +53,20 @@ class Ui_new_item_dialog(object):
 
         self.verticalLayout.addWidget(self.label_6)
 
+        self.label_4 = QLabel(new_item_dialog)
+        self.label_4.setObjectName(u"label_4")
+
+        self.verticalLayout.addWidget(self.label_4)
+
         self.label_7 = QLabel(new_item_dialog)
         self.label_7.setObjectName(u"label_7")
 
         self.verticalLayout.addWidget(self.label_7)
+
+        self.label_5 = QLabel(new_item_dialog)
+        self.label_5.setObjectName(u"label_5")
+
+        self.verticalLayout.addWidget(self.label_5)
 
 
         self.horizontalLayout.addLayout(self.verticalLayout)
@@ -89,15 +94,6 @@ class Ui_new_item_dialog(object):
 
         self.verticalLayout_2.addWidget(self.name_chn_input)
 
-        self.year_input = QLineEdit(new_item_dialog)
-        self.year_input.setObjectName(u"year_input")
-        sizePolicy.setHeightForWidth(self.year_input.sizePolicy().hasHeightForWidth())
-        self.year_input.setSizePolicy(sizePolicy)
-        self.year_input.setMinimumSize(QSize(150, 0))
-        self.year_input.setMaximumSize(QSize(150, 16777215))
-
-        self.verticalLayout_2.addWidget(self.year_input)
-
         self.type_input = QComboBox(new_item_dialog)
         self.type_input.setObjectName(u"type_input")
         sizePolicy.setHeightForWidth(self.type_input.sizePolicy().hasHeightForWidth())
@@ -116,6 +112,15 @@ class Ui_new_item_dialog(object):
 
         self.verticalLayout_2.addWidget(self.area_input)
 
+        self.year_input = QLineEdit(new_item_dialog)
+        self.year_input.setObjectName(u"year_input")
+        sizePolicy.setHeightForWidth(self.year_input.sizePolicy().hasHeightForWidth())
+        self.year_input.setSizePolicy(sizePolicy)
+        self.year_input.setMinimumSize(QSize(150, 0))
+        self.year_input.setMaximumSize(QSize(150, 16777215))
+
+        self.verticalLayout_2.addWidget(self.year_input)
+
         self.quality_input = QComboBox(new_item_dialog)
         self.quality_input.setObjectName(u"quality_input")
         sizePolicy.setHeightForWidth(self.quality_input.sizePolicy().hasHeightForWidth())
@@ -124,6 +129,11 @@ class Ui_new_item_dialog(object):
         self.quality_input.setMaximumSize(QSize(150, 16777215))
 
         self.verticalLayout_2.addWidget(self.quality_input)
+
+        self.other_input = QLineEdit(new_item_dialog)
+        self.other_input.setObjectName(u"other_input")
+
+        self.verticalLayout_2.addWidget(self.other_input)
 
 
         self.horizontalLayout.addLayout(self.verticalLayout_2)
@@ -366,10 +376,12 @@ class Ui_new_item_dialog(object):
         new_item_dialog.setWindowTitle(QCoreApplication.translate("new_item_dialog", u"Dialog", None))
         self.label.setText(QCoreApplication.translate("new_item_dialog", u"\u7247\u540d", None))
         self.label_2.setText(QCoreApplication.translate("new_item_dialog", u"\u4e2d\u6587\u7247\u540d", None))
-        self.label_4.setText(QCoreApplication.translate("new_item_dialog", u"\u5e74\u4efd", None))
         self.label_3.setText(QCoreApplication.translate("new_item_dialog", u"\u7c7b\u578b", None))
         self.label_6.setText(QCoreApplication.translate("new_item_dialog", u"\u5730\u533a", None))
+        self.label_4.setText(QCoreApplication.translate("new_item_dialog", u"\u5e74\u4efd", None))
         self.label_7.setText(QCoreApplication.translate("new_item_dialog", u"\u6e05\u6670\u5ea6", None))
+        self.label_5.setText(QCoreApplication.translate("new_item_dialog", u"\u5176\u4ed6\u4fe1\u606f", None))
+        self.name_chn_input.setPlaceholderText("")
         self.tag_box.setTitle(QCoreApplication.translate("new_item_dialog", u"\u6807\u7b7e", None))
         self.tag_homo.setText(QCoreApplication.translate("new_item_dialog", u"\u540c\u6027", None))
         self.tag_action.setText(QCoreApplication.translate("new_item_dialog", u"\u52a8\u4f5c", None))

@@ -28,7 +28,9 @@ class Dao:
         mlist = []
         with open(self.__path_name, "r", encoding='utf-8') as f:
             for line in f:
-                mlist.append(StrUtils.str_to_MTA_data(line))
+                # 去除从文件中读入的换行符
+                fline = line.strip('\n')
+                mlist.append(StrUtils.str_to_MTA_data(fline))
         return mlist
 
     def update(self) -> None:

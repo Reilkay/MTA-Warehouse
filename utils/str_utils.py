@@ -80,6 +80,7 @@ class StrUtils:
         area_show = area_dict.get(mta.area)
         quality_show = quality_dict.get(mta.quality)
         save_time_show = StrUtils.timestamp_to_localtime(mta.save_time)
+        other_msg_show = mta.other_msg if mta.other_msg != 'NoMessage' else '无'
         return f'片名: {mta.name}\n\
 中文片名: {mta.name_chn}\n\
 类型: {type_show}\n\
@@ -88,7 +89,8 @@ class StrUtils:
 年份: {mta.year}\n\
 清晰度: {quality_show}\n\
 路径: {mta.path}\n\
-保存时间: {save_time_show}'
+保存时间: {save_time_show}\n\
+其他信息: {other_msg_show}'
 
     # 将文本标签转为索引
     @staticmethod
@@ -134,9 +136,9 @@ class StrUtils:
     # 从用户输入中提取MTA元素
     @staticmethod
     def info_to_MTA_data(name: str, name_chn: str, type: int,
-                         tag_input: list[Tuple[str,
-                                               bool]], area: int, year: str,
-                         quality: int, path: str, save_time: int) -> MTAData:
+                         tag_input: list[Tuple[str, bool]], area: int,
+                         year: str, quality: int, path: str, save_time: int,
+                         other_msg: str) -> MTAData:
         type = MTAType(type)
         tag_index = [
             StrUtils.str_tag_to_index(t[0]) for t in tag_input if t[1]
@@ -145,8 +147,10 @@ class StrUtils:
         tag = list(map(lambda i: MTATag(i), tag_index))
         area = MTAArea(area)
         quality = MTAQuality(quality)
+        if other_msg == '':
+            other_msg = 'NoMessage'
         return MTAData(name, name_chn, type, tag, area, year, quality, path,
-                       save_time)
+                       save_time, other_msg)
 
     # 获取当前时间戳
     @staticmethod
@@ -209,3 +213,12 @@ class StrUtils:
     def file_name_sorted(file_list: list[str]) -> list[str]:
         return sorted(file_list,
                       key=functools.cmp_to_key(StrUtils.file_name_cmp))
+
+    # 文件名合法校验
+    @staticmethod
+    def is_file_name_legal(name: str) -> bool:
+        name_format = re.compile(r'[\/:*?"<>|]')
+        if name_format.findall(name):
+            return False
+        else:
+            return True

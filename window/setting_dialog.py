@@ -17,7 +17,6 @@ class SettingDialog(QDialog, Ui_setting_dialog):
         self.setWindowTitle('设置')
         # 获取当前配置信息
         self.config = Config().get()
-        print(self.config)
         # 配置填入页面
         # 保存位置
         save = ['cwd', 'warehouse', 'custom']
@@ -49,6 +48,14 @@ class SettingDialog(QDialog, Ui_setting_dialog):
             self.config['warehouse']['auto_rename_rule'])
         if not self.config['warehouse']['auto_rename'] == 'true':
             self.auto_rename_rule.setEnabled(False)
+        # 最大标签数量
+        self.max_tags.setMinimum(1)
+        self.max_tags.setMaximum(23)
+        if 1 <= self.config['warehouse']['max_tags'] <= 23:
+            self.max_tags.setValue(self.config['warehouse']['max_tags'])
+        else:
+            self.max_tags.setValue(4)
+            self.config['warehouse']['max_tags'] = 4
 
     # 绑定输入操作
     def bind_op(self):
@@ -60,6 +67,7 @@ class SettingDialog(QDialog, Ui_setting_dialog):
         self.auto_rename.currentTextChanged.connect(self.auto_rename_changed)
         self.auto_rename_rule.editingFinished.connect(
             self.auto_rename_rule_finished)
+        self.max_tags.valueChanged.connect(self.max_tags_changed)
 
     # 改变保存位置
     def save_position_changed(self, text: str):
@@ -89,7 +97,11 @@ class SettingDialog(QDialog, Ui_setting_dialog):
     # 改变自动重命名规则
     def auto_rename_rule_finished(self):
         self.config['warehouse'][
-            'sauto_rename_rule'] = self.auto_rename_rule.text()
+            'auto_rename_rule'] = self.auto_rename_rule.text()
+
+    # 改变标签最大值
+    def max_tags_changed(self):
+        self.config['warehouse']['max_tags'] = self.max_tags.value()
 
     def accept(self) -> None:
         Config().update(self.config)

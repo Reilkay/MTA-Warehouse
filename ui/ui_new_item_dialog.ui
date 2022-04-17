@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>572</width>
-    <height>386</height>
+    <height>412</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,13 +33,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>年份</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QLabel" name="label_3">
          <property name="text">
           <string>类型</string>
@@ -54,9 +47,23 @@
         </widget>
        </item>
        <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>年份</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="label_7">
          <property name="text">
           <string>清晰度</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>其他信息</string>
          </property>
         </widget>
        </item>
@@ -106,27 +113,8 @@
            <height>16777215</height>
           </size>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="year_input">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>150</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>150</width>
-           <height>16777215</height>
-          </size>
+         <property name="placeholderText">
+          <string/>
          </property>
         </widget>
        </item>
@@ -175,6 +163,28 @@
         </widget>
        </item>
        <item>
+        <widget class="QLineEdit" name="year_input">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QComboBox" name="quality_input">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -195,6 +205,9 @@
           </size>
          </property>
         </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="other_input"/>
        </item>
       </layout>
      </item>

@@ -5,6 +5,7 @@ from PySide6.QtCore import Qt, QItemSelectionModel, Signal
 from ui.ui_new_item_dialog import Ui_new_item_dialog
 from utils.file_operation import FileOperation
 from utils.str_utils import StrUtils
+from utils.config import Config
 from data.MTA_data import MTAData
 
 
@@ -21,6 +22,8 @@ class NewItemDialog(QDialog, Ui_new_item_dialog):
     # 初始化UI
     def init_ui(self):
         self.setWindowTitle('添加新项目')
+        # 获取当前配置信息
+        self.config_warehouse = Config().get_warehouse()
         # 按钮文本设置
         self.buttonBox.button(QDialogButtonBox.Ok).setText('确认添加')
         self.buttonBox.button(QDialogButtonBox.Cancel).setText('取消')
@@ -101,26 +104,37 @@ class NewItemDialog(QDialog, Ui_new_item_dialog):
         return status_list
 
     # 验证数据是否合法，若合法则返回数据
-    def get_if_input_legal(self) -> Tuple[str, str, str, bool, str]:
+    # name, name_chn, year, other_msg, legal, error_msg
+    def get_if_input_legal(self) -> Tuple[str, str, str, str, bool, str]:
         tag_check = [t for t in self.get_selected_tags() if t[1]]
         if self.name_input.text() and self.year_input.text() and tag_check:
             name = self.name_input.text()
             name_chn = self.name_chn_input.text() if self.name_chn_input.text(
             ) else self.name_input.text()
             year = self.year_input.text()
-            # 限制年份必须为3000以内，并在当前年份之前
-            if int(year) > 3000 and StrUtils.timef_to_timestamp(
-                    year) > StrUtils.get_current_timestamp():
-                return (None, None, None, False, '年份填写有误，请核对！')
-            if len(tag_check) > 5:
-                return (None, None, None, False, '过多的标签，请核对！')
-            return (name, name_chn, year, True, None)
+            other_msg = self.other_input.text()
         else:
-            return (None, None, None, False, '有未填写的信息，无法添加！')
+            return (None, None, None, None, False, '有未填写的信息，无法添加！')
+        # 限制标签数量
+        max_tags = self.config_warehouse['max_tags']
+        if len(tag_check) > max_tags:
+            return (None, None, None, None, False,
+                    f'标签添加过多(tag > {max_tags})，请核对！')
+        # 限制年份必须为3000以内，并在当前年份之前
+        if int(year) > 3000 and StrUtils.timef_to_timestamp(
+                year) > StrUtils.get_current_timestamp():
+            return (None, None, None, None, False, '年份填写有误，请核对！')
+        # 限制输入信息合法
+        if not (StrUtils.is_file_name_legal(name)
+                and StrUtils.is_file_name_legal(name_chn)
+                and StrUtils.is_file_name_legal(other_msg)):
+            return (None, None, None, None, False, '填写的信息中有非法字符，无法添加！')
+        return (name, name_chn, year, other_msg, True, None)
 
     # 确认添加
     def accept(self) -> None:
-        name, name_chn, year, legal, error_msg = self.get_if_input_legal()
+        name, name_chn, year, other_msg, legal, error_msg = self.get_if_input_legal(
+        )
         if not legal:
             msg_box = QMessageBox()
             msg_box.setWindowTitle('警告')
@@ -141,8 +155,7 @@ class NewItemDialog(QDialog, Ui_new_item_dialog):
         save_time = StrUtils.get_current_timestamp()
         mta = StrUtils.info_to_MTA_data(name, name_chn, type,
                                         self.get_selected_tags(), area, year,
-                                        quality, path, save_time)
-        print(mta)
+                                        quality, path, save_time, other_msg)
         self.add_new_item.emit(mta)
         # 关闭前恢复显示主窗口
         if self.window_top_button.isChecked():
