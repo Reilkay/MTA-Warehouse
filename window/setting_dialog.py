@@ -1,4 +1,3 @@
-from operator import truediv
 from PySide6.QtWidgets import QDialog
 from PySide6.QtCore import Qt
 from ui.ui_setting_dialog import Ui_setting_dialog
@@ -18,6 +17,7 @@ class SettingDialog(QDialog, Ui_setting_dialog):
         self.setWindowTitle('设置')
         # 获取当前配置信息
         self.config = Config().get()
+        print(self.config)
         # 配置填入页面
         # 保存位置
         save = ['cwd', 'warehouse', 'custom']
@@ -27,29 +27,28 @@ class SettingDialog(QDialog, Ui_setting_dialog):
                 self.config['warehouse']['save_position'])
         else:
             self.save_position.setCurrentIndex(0)
+            self.config['warehouse']['save_position'] = 'cwd'
         # 保存路径
-        if self.config['warehouse']['save_position'] == 'custom':
-            self.save_path.setText(self.config['warehouse']['save_path'])
-        else:
-            self.save_path.setFocusPolicy(Qt.NoFocus)
+        self.save_path.setText(self.config['warehouse']['save_path'])
+        if not self.config['warehouse']['save_position'] == 'custom':
+            self.save_path.setEnabled(False)
         # 目录命名规则
         self.directory_rename_rule.setText(
             self.config['warehouse']['directory_rename_rule'])
         # 自动重命名
         auto = ['true', 'false']
         self.auto_rename.addItems(auto)
-        if self.config['warehouse']['auto_rename'] in save:
+        if self.config['warehouse']['auto_rename'] in auto:
             self.auto_rename.setCurrentText(
                 self.config['warehouse']['auto_rename'])
         else:
             self.auto_rename.setCurrentIndex(0)
+            self.config['warehouse']['auto_rename'] = 'true'
         # 自动重命名规则
-        if self.config['warehouse']['auto_rename'] == 'true':
-            self.auto_rename_rule.setText(
-                self.config['warehouse']['auto_rename_rule'])
-        else:
-            self.auto_rename_rule.setFocusPolicy(Qt.NoFocus)
-            print(123, self.config['warehouse']['auto_rename'])
+        self.auto_rename_rule.setText(
+            self.config['warehouse']['auto_rename_rule'])
+        if not self.config['warehouse']['auto_rename'] == 'true':
+            self.auto_rename_rule.setEnabled(False)
 
     # 绑定输入操作
     def bind_op(self):
@@ -65,10 +64,9 @@ class SettingDialog(QDialog, Ui_setting_dialog):
     # 改变保存位置
     def save_position_changed(self, text: str):
         if text == 'custom':
-            self.save_path.setFocusPolicy(Qt.StrongFocus)
-            self.save_path.setText(self.config['warehouse']['save_path'])
+            self.save_path.setEnabled(True)
         else:
-            self.save_path.setFocusPolicy(Qt.NoFocus)
+            self.save_path.setEnabled(False)
         self.config['warehouse']['save_position'] = text
 
     # 改变保存路径
@@ -83,11 +81,9 @@ class SettingDialog(QDialog, Ui_setting_dialog):
     # 改变自动重命名
     def auto_rename_changed(self, text: str):
         if text == 'true':
-            self.auto_rename_rule.setFocusPolicy(Qt.StrongFocus)
-            self.auto_rename_rule.setText(
-                self.config['warehouse']['auto_rename_rule'])
+            self.auto_rename_rule.setEnabled(True)
         else:
-            self.auto_rename_rule.setFocusPolicy(Qt.NoFocus)
+            self.auto_rename_rule.setEnabled(False)
         self.config['warehouse']['auto_rename'] = text
 
     # 改变自动重命名规则
